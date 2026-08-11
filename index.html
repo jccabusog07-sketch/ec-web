@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EC-Web! 💗</title>
+    <style>
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: pink;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        h1 {
+            color: white;
+            font-size: 32px;
+            line-height: 1.1;
+            margin: 15px 10px 10px;
+            text-shadow: 2px 2px 5px hotpink;
+        }
+
+        .nickole {
+            position: relative;
+            z-index: 2;
+            width: 500px;
+            max-width: 75vw;
+            margin: 12px auto;
+            padding: 22px 25px;
+            color: white;
+            background: hotpink;
+            border-radius: 25px;
+            box-shadow: 0 0 20px hotpink, 0 0 35px rgba(255,20,147,.5);
+        }
+
+        form {
+            position: relative;
+            z-index: 5;
+        }
+
+        h2 {
+            font-size: 27px;
+            margin: 2px 0 10px;
+            line-height: 1.15;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 5px;
+            line-height: 1.25;
+        }
+
+        button {
+            padding: 11px 25px;
+            margin: 9px 4px;
+            border: none;
+            border-radius: 16px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.07);
+        }
+
+        #yesButton {
+            background: white;
+            color: hotpink;
+        }
+
+        #noButton {
+            background: #ff4164;
+            color: white;
+            position: relative;
+        }
+
+        .heart-decoration {
+            position: absolute;
+            z-index: 1;
+            font-size: 32px;
+            animation: heartbeat 1.5s infinite;
+            pointer-events: none;
+        }
+
+        .heart1 { top: -28px; left: 15%; }
+        .heart2 { top: -32px; right: 15%; }
+        .heart3 { top: 40%; left: -48px; }
+        .heart4 { top: 40%; right: -48px; }
+        .heart5 { bottom: -28px; left: 25%; }
+        .heart6 { bottom: -30px; right: 25%; }
+
+        @keyframes heartbeat {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .heart {
+            position: fixed;
+            bottom: -30px;
+            font-size: 30px;
+            animation: float 3s linear forwards;
+            pointer-events: none;
+            z-index: 20;
+        }
+
+        @keyframes float {
+            from {
+                bottom: -30px;
+                opacity: 1;
+            }
+            to {
+                bottom: 100%;
+                opacity: 0;
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 25px;
+                margin: 10px 8px;
+            }
+
+            .nickole {
+                width: 80vw;
+                padding: 18px;
+                margin: 8px auto;
+            }
+
+            h2 { font-size: 21px; }
+            p { font-size: 15px; }
+
+            button {
+                font-size: 15px;
+                padding: 9px 18px;
+            }
+
+            .heart-decoration {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>
+        🚨 EMERGENCY 🚨<br>
+        Nickole Is Mad At Me 😭<br>
+        Please Forgive This Stupid Boy 🥺🤍
+    </h1>
+
+    <div class="nickole">
+        <span class="heart-decoration heart1">🤍</span>
+        <span class="heart-decoration heart2">💗</span>
+        <span class="heart-decoration heart3">💕</span>
+        <span class="heart-decoration heart4">💖</span>
+        <span class="heart-decoration heart5">🤍</span>
+        <span class="heart-decoration heart6">💗</span>
+
+        <form>
+            <h2>LOVE PAKO NIMO?? 🥺🤍</h2>
+            <p>I know you're mad at me... 🥺</p>
+            <p>I'm really sorry, Nickole. 🤍</p>
+            <p>Can you forgive me? 🥺💕</p>
+
+            <button type="button" id="yesButton" onclick="yesAnswer()">YES 🤍</button>
+            <button type="button" id="noButton" onmouseover="moveNoButton()">NO 💔</button>
+
+            <p id="message"></p>
+        </form>
+    </div>
+
+    <script>
+        function yesAnswer() {
+            document.querySelector("h1").innerHTML = "SHE FORGAVE ME!! 😭🤍🎉";
+            document.querySelector("h2").innerHTML = "THANK YOU, NICKOLE 🥺🤍";
+            document.getElementById("message").innerHTML = "🤍 I LOVE YOU IN EVERY UNIVERSE! 🤍";
+            document.getElementById("yesButton").style.display = "none";
+            document.getElementById("noButton").style.display = "none";
+            document.body.style.background = "linear-gradient(135deg,pink,hotpink)";
+
+            for (let i = 0; i < 40; i++) {
+                let heart = document.createElement("div");
+                heart.innerHTML = ["🤍","💗","💕","💖"][Math.floor(Math.random() * 4)];
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+                heart.style.animationDelay = Math.random() * 2 + "s";
+                document.body.appendChild(heart);
+
+                setTimeout(function() {
+                    heart.remove();
+                }, 6000);
+            }
+        }
+
+        function moveNoButton() {
+            let button = document.getElementById("noButton");
+            button.style.position = "fixed";
+
+            let maxX = window.innerWidth - button.offsetWidth - 20;
+            let maxY = window.innerHeight - button.offsetHeight - 20;
+
+            button.style.left = Math.max(10, Math.random() * maxX) + "px";
+            button.style.top = Math.max(10, Math.random() * maxY) + "px";
+
+            document.getElementById("message").innerHTML =
+                "WAIT 😭 PLEASE DON'T SAY NOOO 🥺💔";
+        }
+    </script>
+</body>
+</html>
